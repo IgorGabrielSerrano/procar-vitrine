@@ -1,0 +1,12 @@
+Hero image (illustrative, not a ProCar fleet vehicle):
+https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=85
+Downloaded 2026-10-29. Source: Unsplash image service.
+procar-logo.svg is a code-native vector recreation of the business card logo supplied by the user on 2026-10-29. It preserves the cream italic PROCAR wordmark, red car silhouette, red Centroautomotivo band and black background. It is a redraw, not the original vector artwork.
+
+Demo fleet images (illustrative; do not represent the vehicle model in the demo record or ProCar's actual fleet):
+car-1.jpg: https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=85
+car-2.jpg: https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=85
+car-3.jpg: https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1000&q=85
+Downloaded 2026-10-29 from the Unsplash image service.
+Images are local so the public catalog does not send visitor requests to an image CDN.
+Replace these demonstration images with photographs of the actual fleet before publishing real offers.
