@@ -7,7 +7,31 @@
     "about": "A ProCar conecta você ao veículo certo para cada caminho. Consulte nossa equipe para conhecer as condições de locação.",
     "email": "escritorio.procar@gmail.com"
   },
-  "updated_at": "2026-10-29T21:07:55.574705+00:00",
+  "updated_at": "2026-10-29T21:20:23.306854+00:00",
   "demo": false,
-  "vehicles": []
+  "vehicles": [
+    {
+      "id": 1,
+      "name": "CB 250 Twister",
+      "brand": "Honda",
+      "model": "CB 250 Twister",
+      "year": 2021,
+      "category": "Manual",
+      "daily_rate": 500.0,
+      "description": "HONDA CB 250 TWISTER, LOCAÇÃO PARA TRABALHO, VIAGEM E AFINS...",
+      "status": "available",
+      "transmission": "Manual",
+      "fuel": "Gasolina",
+      "seats": 1,
+      "rate_period": "weekly",
+      "km_unlimited": true,
+      "km_limit": null,
+      "extra_km_rate": 0.0,
+      "photos": [
+        "assets/vehicles/a648536d-bb7f-5ceb-9514-cae32d04b468.jpg",
+        "assets/vehicles/4105a988-ca3d-5257-ba51-687ac5ea6e63.jpg",
+        "assets/vehicles/8c324e10-0980-5077-add6-e0cb0f1dd264.jpg"
+      ]
+    }
+  ]
 }
