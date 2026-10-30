@@ -124,6 +124,66 @@
     if (hero.nextElementSibling !== strip) hero.after(strip);
     if (orderChanged && focused?.isConnected) focused.focus({preventScroll:true});
   };
+  // Editor content is plain text. Remember source defaults so clearing a field
+  // restores its original value even during live catalog refreshes.
+  const contentNodes = {
+    hero_description: document.querySelector('.hero-description'),
+    hero_button: document.querySelector('.hero-copy > .button'),
+    about_text: $('business-about'),
+    contact_description: $('contact-message'),
+    contact_button: $('contact-whatsapp'),
+  };
+  document.querySelectorAll('.steps-grid article').forEach((article, index) => {
+    contentNodes[`step${index + 1}_title`] = article.querySelector('h3');
+    contentNodes[`step${index + 1}_text`] = article.querySelector('p');
+  });
+  document.querySelectorAll('.faq-items details').forEach((item, index) => {
+    contentNodes[`faq${index + 1}_question`] = item.querySelector('summary');
+    contentNodes[`faq${index + 1}_answer`] = item.querySelector('p');
+  });
+  const contentDefaults = Object.fromEntries(Object.entries(contentNodes).map(([key, node]) => [key, node.cloneNode(true)]));
+  const renderEditorContent = () => {
+    const business = state.business;
+    const content = business.showcase_content && typeof business.showcase_content === 'object' ? business.showcase_content : {};
+    Object.entries(contentNodes).forEach(([key, node]) => {
+      const value = typeof content[key] === 'string' ? content[key].trim() : '';
+      // Contact defaults depend on the configured contact channel, not static HTML.
+      if (key.startsWith('contact_') && !value) return;
+      if (value) {
+        node.textContent = value;
+        if (key.endsWith('_button')) add(node, 'span', '', '↗').setAttribute('aria-hidden', 'true');
+      } else if (key === 'about_text' && text(business.about)) {
+        node.textContent = business.about;
+      } else {
+        node.replaceChildren(...[...contentDefaults[key].childNodes].map(child => child.cloneNode(true)));
+      }
+    });
+    const photo = document.querySelector('.hero-visual > img');
+    const customPhoto = photoUrl(business.hero_image);
+    const source = customPhoto || new URL('assets/mobility.svg', document.baseURI).href;
+    if (photo.src !== source) photo.src = source;
+    photo.alt = customPhoto ? 'Imagem de apresentação da ProCar' : 'Ilustração de mobilidade ProCar. Não representa um modelo da frota.';
+    photo.style.objectFit = ['cover', 'contain'].includes(business.hero_image_fit) ? business.hero_image_fit : 'cover';
+    photo.style.objectPosition = ['center', 'top', 'bottom'].includes(business.hero_image_position) ? business.hero_image_position : 'center';
+    document.querySelector('.image-caption').textContent = text(business.hero_image_caption) || (customPhoto ? 'Imagem de apresentação da ProCar' : 'Ilustração · consulte os veículos reais abaixo');
+    document.querySelector('.hero-visual').classList.toggle('custom-hero-photo', Boolean(customPhoto));
+    photo.onerror = () => {
+      if (!photo.src.endsWith('/assets/mobility.svg')) {
+        photo.src = new URL('assets/mobility.svg', document.baseURI).href;
+        photo.alt = 'Ilustração de mobilidade ProCar';
+      }
+    };
+    const layout = business.showcase_layout && typeof business.showcase_layout === 'object' ? business.showcase_layout : {};
+    const choices = {
+      hero_image_side: ['right', 'left'], hero_text_align: ['left', 'center', 'right'],
+      section_text_align: ['left', 'center', 'right'], content_width: ['normal', 'wide'],
+      hero_image_size: ['normal', 'compact', 'large'],
+    };
+    Object.entries(choices).forEach(([key, allowed]) => {
+      const attribute = 'data-' + key.replaceAll('_', '-');
+      document.body.setAttribute(attribute, allowed.includes(layout[key]) ? layout[key] : allowed[0]);
+    });
+  };
   const renderBusiness = () => {
     const b = state.business;
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text(b.email));
@@ -155,6 +215,10 @@
       $('contact-message').textContent = 'Envie as datas e o modelo desejado para consultar a locação.';
     } else {
       $('contact-whatsapp').href = '#frota';
+      $('contact-whatsapp').removeAttribute('target');
+      $('contact-whatsapp').removeAttribute('rel');
+      $('contact-whatsapp').replaceChildren(document.createTextNode('Encontre seu veículo'));
+      add($('contact-whatsapp'), 'span', '', '↗').setAttribute('aria-hidden', 'true');
       $('contact-message').textContent = 'O contato da ProCar será disponibilizado em breve.';
     }
   };
@@ -303,7 +367,7 @@
       state.demo = catalog.demo === true;
       $('demo-banner').hidden = !state.demo;
       if (catalog.updated_at) {const date = new Date(catalog.updated_at); if (!Number.isNaN(date.getTime())) $('catalog-updated').textContent = `Catálogo atualizado em ${date.toLocaleDateString('pt-BR')} às ${date.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`;}
-      renderBusiness(); renderBlocks(); renderCatalog(); loaded = true;
+      renderBusiness(); renderEditorContent(); renderBlocks(); renderCatalog(); loaded = true;
       // Update availability in place: keep the visitor's open gallery and focus.
       if ($('vehicle-dialog').open) {
         const vehicle = state.vehicles.find(item => item.id === activeVehicleId);

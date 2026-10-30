@@ -37,9 +37,15 @@
         "enabled": true,
         "title": ""
       }
-    ]
+    ],
+    "hero_image": "",
+    "hero_image_fit": "cover",
+    "hero_image_position": "center",
+    "hero_image_caption": "",
+    "showcase_content": {},
+    "showcase_layout": {}
   },
-  "updated_at": "2026-10-30T03:38:32.771026+00:00",
+  "updated_at": "2026-10-30T09:23:20.635506+00:00",
   "demo": false,
   "vehicles": [
     {

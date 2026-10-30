@@ -64,3 +64,34 @@
 }
 @media(max-width:360px){.container{padding-left:15px;padding-right:15px}.hero-visual{min-height:280px}.vehicle-body{padding:18px}.category-button{font-size:11px}.catalog-tools{grid-template-columns:minmax(0,1fr) 113px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Bounded editor layout choices preserve a usable reading order on mobile. */
+body[data-content-width="wide"] .container{max-width:1520px}
+body[data-hero-text-align="center"] .hero-copy{text-align:center}
+body[data-hero-text-align="center"] .hero-bottom{justify-content:center}
+body[data-hero-text-align="right"] .hero-copy{text-align:right}
+body[data-hero-text-align="right"] .hero-bottom{justify-content:flex-end}
+body[data-section-text-align="center"] main>section:not(.hero) .section-heading,
+body[data-section-text-align="center"] .about-copy,
+body[data-section-text-align="center"] .faq-layout>div:first-child,
+body[data-section-text-align="center"] .contact-inner{text-align:center}
+body[data-section-text-align="right"] main>section:not(.hero) .section-heading,
+body[data-section-text-align="right"] .about-copy,
+body[data-section-text-align="right"] .faq-layout>div:first-child,
+body[data-section-text-align="right"] .contact-inner{text-align:right}
+.custom-hero-photo .visual-label,.custom-hero-photo .visual-number{display:none}
+.hero-description,.steps-grid article>p,.about-copy>p,#contact-message,.faq-items details>p{white-space:pre-line}
+@media(min-width:992px){
+  body[data-hero-image-side="left"] .hero-visual{grid-column:1;grid-row:1}
+  body[data-hero-image-side="left"] .hero-copy{grid-column:2;grid-row:1}
+  body[data-hero-image-size="compact"] .hero-layout{grid-template-columns:1.2fr .8fr;min-height:480px}
+  body[data-hero-image-size="compact"] .hero-visual{min-height:480px}
+  body[data-hero-image-size="large"] .hero-layout{grid-template-columns:.8fr 1.2fr}
+  body[data-hero-image-side="left"][data-hero-image-size="compact"] .hero-layout{grid-template-columns:.8fr 1.2fr}
+  body[data-hero-image-side="left"][data-hero-image-size="large"] .hero-layout{grid-template-columns:1.2fr .8fr}
+}
+@media(max-width:991px){
+  body[data-hero-image-side="left"] .hero-visual{order:-1}
+  body[data-hero-image-size="compact"] .hero-visual{min-height:240px;max-height:300px;aspect-ratio:1.4}
+  body[data-hero-image-size="large"] .hero-visual{min-height:360px;max-height:480px;aspect-ratio:1}
+}
