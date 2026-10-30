@@ -5,9 +5,41 @@
     "whatsapp": "5518991019389",
     "address": "Av. Cel. José Soares Marcondes, 4349 - Jd. Rio 400 - Presidente Prudente - SP",
     "about": "A ProCar conecta você ao veículo certo para cada caminho. Consulte nossa equipe para conhecer as condições de locação.",
-    "email": "escritorio.procar@gmail.com"
+    "email": "escritorio.procar@gmail.com",
+    "showcase_blocks": [
+      {
+        "id": "hero",
+        "enabled": true,
+        "title": ""
+      },
+      {
+        "id": "fleet",
+        "enabled": true,
+        "title": ""
+      },
+      {
+        "id": "how",
+        "enabled": true,
+        "title": ""
+      },
+      {
+        "id": "about",
+        "enabled": true,
+        "title": ""
+      },
+      {
+        "id": "faq",
+        "enabled": true,
+        "title": ""
+      },
+      {
+        "id": "contact",
+        "enabled": true,
+        "title": ""
+      }
+    ]
   },
-  "updated_at": "2026-10-29T21:21:14.120611+00:00",
+  "updated_at": "2026-10-30T03:27:57.020892+00:00",
   "demo": false,
   "vehicles": [
     {
