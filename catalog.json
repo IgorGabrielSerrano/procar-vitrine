@@ -39,7 +39,7 @@
       }
     ]
   },
-  "updated_at": "2026-10-30T03:35:43.181711+00:00",
+  "updated_at": "2026-10-30T03:38:32.771026+00:00",
   "demo": false,
   "vehicles": [
     {
@@ -51,7 +51,7 @@
       "category": "Manual",
       "daily_rate": 500.0,
       "description": "HONDA CB 250 TWISTER, LOCAÇÃO PARA TRABALHO, VIAGEM E AFINS...",
-      "status": "available",
+      "status": "rented",
       "transmission": "Manual",
       "fuel": "Gasolina",
       "seats": 1,
