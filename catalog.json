@@ -1,7 +1,7 @@
 {
   "business": {
     "name": "ProCar",
-    "phone": "(18) 3928-8331",
+    "phone": "1839288331",
     "whatsapp": "5518991019389",
     "address": "Av. Cel. José Soares Marcondes, 4349 - Jd. Rio 400 - Presidente Prudente - SP",
     "about": "A ProCar conecta você ao veículo certo para cada caminho. Consulte nossa equipe para conhecer as condições de locação.",
@@ -39,7 +39,7 @@
       }
     ]
   },
-  "updated_at": "2026-10-30T03:27:57.020892+00:00",
+  "updated_at": "2026-10-30T03:34:48.711767+00:00",
   "demo": false,
   "vehicles": [
     {
